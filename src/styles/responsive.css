@@ -1,0 +1,22 @@
+@media (max-width: 980px) {
+  .workspace {
+    grid-template-columns: 1fr;
+  }
+
+  #app {
+    padding: 0.85rem;
+  }
+
+  .text-area {
+    min-height: 220px;
+  }
+
+  .top-bar {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .top-actions {
+    justify-content: space-between;
+  }
+}

@@ -1,0 +1,112 @@
+.app-shell {
+  --base: #232136;
+  --surface: #2a273f;
+  --overlay: #393552;
+  --muted: #6e6a86;
+  --subtle: #908caa;
+  --text: #e0def4;
+  --love: #eb6f92;
+  --gold: #f6c177;
+  --rose: #ea9a97;
+  --pine: #3e8fb0;
+  --foam: #9ccfd8;
+  --iris: #c4a7e7;
+  --highlight-low: #2a283e;
+  --highlight-med: #44415a;
+  --highlight-high: #56526e;
+
+  --bg-gradient-a: color-mix(in srgb, var(--foam) 20%, transparent);
+  --bg-gradient-b: color-mix(in srgb, var(--iris) 18%, transparent);
+  --bg-gradient-c: color-mix(in srgb, var(--gold) 18%, transparent);
+
+  --panel-bg: color-mix(in srgb, var(--surface) 84%, transparent);
+  --panel-border: color-mix(in srgb, var(--highlight-high) 72%, transparent);
+  --text-main: var(--text);
+  --text-muted: var(--subtle);
+
+  --chip-bg: color-mix(in srgb, var(--overlay) 84%, transparent);
+  --chip-border: color-mix(in srgb, var(--foam) 48%, transparent);
+  --chip-active-bg: linear-gradient(135deg, var(--foam) 0%, var(--iris) 100%);
+  --chip-active-text: var(--base);
+
+  --btn-primary-bg: linear-gradient(135deg, var(--gold) 0%, var(--rose) 100%);
+  --btn-primary-text: var(--base);
+  --btn-primary-border: color-mix(in srgb, var(--gold) 76%, transparent);
+
+  --btn-ghost-bg: color-mix(in srgb, var(--overlay) 82%, transparent);
+  --btn-ghost-border: color-mix(in srgb, var(--highlight-high) 78%, transparent);
+  --btn-ghost-text: var(--text);
+
+  --input-bg: color-mix(in srgb, var(--base) 92%, transparent);
+  --input-border: color-mix(in srgb, var(--foam) 38%, transparent);
+  --input-text: var(--text);
+
+  --status-bg: color-mix(in srgb, var(--overlay) 86%, transparent);
+  --status-border: color-mix(in srgb, var(--foam) 56%, transparent);
+  --status-text: var(--foam);
+  --status-pro-bg: var(--gold);
+  --status-pro-text: var(--base);
+
+  --error: var(--love);
+  --info: var(--pine);
+
+  color: var(--text-main);
+  background:
+    radial-gradient(880px 500px at 5% 0%, var(--bg-gradient-a) 0%, transparent 70%),
+    radial-gradient(900px 560px at 100% 100%, var(--bg-gradient-c) 0%, transparent 75%),
+    radial-gradient(760px 420px at 88% 8%, var(--bg-gradient-b) 0%, transparent 68%),
+    linear-gradient(160deg, var(--base) 0%, var(--surface) 48%, var(--highlight-low) 100%);
+}
+
+.app-shell[data-theme='dawn'] {
+  --base: #faf4ed;
+  --surface: #fffaf3;
+  --overlay: #f2e9de;
+  --muted: #9893a5;
+  --subtle: #797593;
+  --text: #575279;
+  --love: #b4637a;
+  --gold: #ea9d34;
+  --rose: #d7827e;
+  --pine: #286983;
+  --foam: #56949f;
+  --iris: #907aa9;
+  --highlight-low: #f4ede8;
+  --highlight-med: #dfdad9;
+  --highlight-high: #cecacd;
+
+  --bg-gradient-a: color-mix(in srgb, var(--foam) 16%, transparent);
+  --bg-gradient-b: color-mix(in srgb, var(--iris) 14%, transparent);
+  --bg-gradient-c: color-mix(in srgb, var(--gold) 14%, transparent);
+
+  --panel-bg: color-mix(in srgb, #ffffff 92%, var(--surface));
+  --panel-border: color-mix(in srgb, var(--highlight-high) 74%, transparent);
+  --text-main: var(--text);
+  --text-muted: var(--subtle);
+
+  --chip-bg: color-mix(in srgb, #ffffff 86%, var(--overlay));
+  --chip-border: color-mix(in srgb, var(--foam) 34%, transparent);
+  --chip-active-bg: linear-gradient(135deg, var(--foam) 0%, var(--iris) 100%);
+  --chip-active-text: #ffffff;
+
+  --btn-primary-bg: linear-gradient(135deg, var(--gold) 0%, var(--rose) 100%);
+  --btn-primary-text: #fff9f3;
+  --btn-primary-border: color-mix(in srgb, var(--rose) 70%, transparent);
+
+  --btn-ghost-bg: color-mix(in srgb, #ffffff 84%, var(--overlay));
+  --btn-ghost-border: color-mix(in srgb, var(--highlight-high) 78%, transparent);
+  --btn-ghost-text: var(--text);
+
+  --input-bg: color-mix(in srgb, #ffffff 88%, var(--surface));
+  --input-border: color-mix(in srgb, var(--foam) 34%, transparent);
+  --input-text: var(--text);
+
+  --status-bg: color-mix(in srgb, #ffffff 80%, var(--overlay));
+  --status-border: color-mix(in srgb, var(--foam) 52%, transparent);
+  --status-text: var(--pine);
+  --status-pro-bg: var(--gold);
+  --status-pro-text: #fff9f3;
+
+  --error: var(--love);
+  --info: var(--pine);
+}

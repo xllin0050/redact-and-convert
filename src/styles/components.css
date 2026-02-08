@@ -1,0 +1,184 @@
+.top-bar h1 {
+  font-family: 'Geist Pixel', 'Geist Mono', monospace;
+  font-size: clamp(1.02rem, 3vw, 1.45rem);
+  letter-spacing: 0.03em;
+  color: var(--gold);
+}
+
+.top-bar p {
+  color: var(--text-muted);
+}
+
+.theme-toggle {
+  border: 1px solid var(--btn-ghost-border);
+  background: var(--btn-ghost-bg);
+  color: var(--btn-ghost-text);
+  padding: 0.24rem 0.64rem;
+  cursor: pointer;
+}
+
+.status {
+  border: 1px solid var(--status-border);
+  padding: 0.15rem 0.6rem;
+  font-size: 0.85rem;
+  font-family: 'Geist Mono', ui-monospace, monospace;
+  color: var(--status-text);
+  background: var(--status-bg);
+}
+
+.status.pro {
+  border-color: transparent;
+  color: var(--status-pro-text);
+  background: var(--status-pro-bg);
+}
+
+.tool-chip {
+  border: 1px solid var(--chip-border);
+  background: var(--chip-bg);
+  padding: 0.35rem 0.75rem;
+  cursor: pointer;
+  color: var(--text-main);
+  transition:
+    transform 0.16s ease,
+    border-color 0.16s ease,
+    background-color 0.16s ease;
+}
+
+.tool-chip:hover {
+  transform: translateY(-1px);
+  border-color: color-mix(in srgb, var(--foam) 72%, transparent);
+}
+
+.tool-chip.active {
+  border-color: transparent;
+  color: var(--chip-active-text);
+  background: var(--chip-active-bg);
+}
+
+.upload-btn,
+.primary-btn,
+.ghost-btn,
+.unlock-btn {
+  padding: 0.4rem 0.7rem;
+  border: 1px solid var(--btn-ghost-border);
+  background: var(--btn-ghost-bg);
+  color: var(--btn-ghost-text);
+  cursor: pointer;
+  transition:
+    transform 0.14s ease,
+    border-color 0.14s ease,
+    background-color 0.14s ease;
+}
+
+.upload-btn:hover,
+.primary-btn:hover,
+.ghost-btn:hover,
+.unlock-btn:hover,
+.theme-toggle:hover {
+  transform: translateY(-1px);
+}
+
+.upload-btn {
+  display: inline-flex;
+  align-items: center;
+}
+
+.upload-btn input {
+  display: none;
+}
+
+.primary-btn {
+  border-color: var(--btn-primary-border);
+  background: var(--btn-primary-bg);
+  color: var(--btn-primary-text);
+  font-weight: 600;
+}
+
+.unlock-btn {
+  border-color: color-mix(in srgb, var(--iris) 62%, transparent);
+  background: linear-gradient(
+    135deg,
+    color-mix(in srgb, var(--iris) 22%, transparent) 0%,
+    color-mix(in srgb, var(--love) 18%, transparent) 100%
+  );
+}
+
+.primary-btn:disabled,
+.ghost-btn:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+.text-area {
+  min-height: 280px;
+  width: 100%;
+  resize: vertical;
+  padding: 0.7rem;
+  border: 1px solid var(--input-border);
+  background: var(--input-bg);
+  font-family: 'Geist Mono', ui-monospace, monospace;
+  font-size: 0.9rem;
+  color: var(--input-text);
+  transition: border-color 0.15s ease;
+}
+
+.text-area:focus,
+.advanced input[type='text']:focus {
+  outline: none;
+  border-color: color-mix(in srgb, var(--foam) 72%, transparent);
+}
+
+.privacy-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+}
+
+.preview-summary,
+.badge,
+.hint,
+.pro-hint {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+}
+
+.preview-list code {
+  font-family: 'Geist Mono', ui-monospace, monospace;
+}
+
+.advanced {
+  border-top: 1px dashed var(--panel-border);
+  padding-top: 0.6rem;
+}
+
+.advanced summary {
+  cursor: pointer;
+  font-weight: 600;
+  margin-bottom: 0.55rem;
+}
+
+.advanced input[type='text'] {
+  width: 100%;
+  border: 1px solid var(--btn-ghost-border);
+  padding: 0.4rem 0.55rem;
+  background: var(--input-bg);
+  color: var(--text-main);
+}
+
+fieldset {
+  border: 1px solid var(--panel-border);
+  margin: 0;
+  padding: 0.5rem;
+}
+
+.action-row p {
+  color: var(--text-muted);
+}
+
+.error-text {
+  color: var(--error);
+}
+
+.info-text {
+  color: var(--info);
+}

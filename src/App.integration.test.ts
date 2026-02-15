@@ -56,7 +56,8 @@ describe('App integration', () => {
     await wrapper.get('textarea[aria-label="Input content"]').setValue('bad')
     await getButtonByText(wrapper, 'Convert').trigger('click')
 
-    expect(wrapper.get('.error-text').text()).toBe('convert failed')
+    expect(wrapper.get('.error-text').text()).toContain('Convert error:')
+    expect(wrapper.get('.error-text').text()).toContain('All processing is completed locally.')
   })
 
   it('previews redaction and applies it to input text', async () => {
@@ -103,7 +104,7 @@ describe('App integration', () => {
       includeAdvanced: true,
       advanced: { jsonKeys: ['password'] },
     })
-    expect(wrapper.get('.status').text()).toContain('All features enabled')
+    expect(wrapper.get('.policy-link').attributes('href')).toBe('/privacy-policy.html')
   })
 
   it('toggles theme between moon and dawn', async () => {

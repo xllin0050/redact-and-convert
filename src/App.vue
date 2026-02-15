@@ -1,11 +1,12 @@
 <script setup lang="ts">
-import { computed, reactive } from 'vue'
+import { computed, reactive, watch } from 'vue'
 import InputPanel from './components/InputPanel.vue'
 import OutputPanel from './components/OutputPanel.vue'
 import PrivacyDrawer from './components/PrivacyDrawer.vue'
 import ToolSelector from './components/ToolSelector.vue'
 import { runTool } from './features/convert/converters'
 import { applyRedaction, detectSensitive } from './features/redact/redaction'
+import { mapAppError } from './features/errors/mapAppError'
 import type {
   AdvancedState,
   AppError,
@@ -42,6 +43,39 @@ const state = reactive({
 })
 
 const themeLabel = computed(() => (state.theme === 'moon' ? 'Moon' : 'Dawn'))
+
+const TOOL_META: Record<ToolId, { title: string; description: string }> = {
+  'json-csv': {
+    title: 'JSON to CSV Converter - Redact and Convert',
+    description: 'Convert JSON to CSV in your browser. Local processing, no uploads, and no tracking.',
+  },
+  'csv-json': {
+    title: 'CSV to JSON Converter - Redact and Convert',
+    description: 'Convert CSV to JSON in your browser. Local processing, no uploads, and no tracking.',
+  },
+  'yaml-json': {
+    title: 'YAML to JSON Converter - Redact and Convert',
+    description: 'Convert YAML to JSON in your browser. Local processing, no uploads, and no tracking.',
+  },
+  'json-yaml': {
+    title: 'JSON to YAML Converter - Redact and Convert',
+    description: 'Convert JSON to YAML in your browser. Local processing, no uploads, and no tracking.',
+  },
+  format: {
+    title: 'Format JSON CSV YAML - Redact and Convert',
+    description: 'Format JSON, CSV, and YAML locally in your browser. No uploads and no tracking.',
+  },
+}
+
+watch(
+  () => state.activeTool,
+  (tool) => {
+    const meta = TOOL_META[tool]
+    document.title = meta.title
+    upsertMetaDescription(meta.description)
+  },
+  { immediate: true },
+)
 
 function onToolChange(tool: ToolId): void {
   state.activeTool = tool
@@ -106,10 +140,10 @@ function onPreviewRedaction(): void {
     state.error = undefined
     state.infoMessage = ''
   } catch (error) {
-    const message = error instanceof Error ? error.message : 'Preview failed'
+    const mapped = mapAppError('preview', error)
     state.preview = {
       status: 'error',
-      errorMessage: message,
+      errorMessage: mapped.message,
     }
   }
 }
@@ -125,10 +159,7 @@ function onApplyRedaction(): void {
     state.error = undefined
     state.infoMessage = 'Redaction applied to input text.'
   } catch (error) {
-    state.error = {
-      stage: 'redact',
-      message: error instanceof Error ? error.message : 'Redaction failed',
-    }
+    state.error = mapAppError('redact', error)
   }
 }
 
@@ -144,10 +175,7 @@ function onFormat(): void {
     state.inputText = runTool('format', state.inputText)
     state.infoMessage = 'Input formatted.'
   } catch (error) {
-    state.error = {
-      stage: 'format',
-      message: error instanceof Error ? error.message : 'Formatting failed',
-    }
+    state.error = mapAppError('format', error)
   }
 }
 
@@ -158,10 +186,7 @@ function onRunPrimaryAction(): void {
   try {
     state.outputText = runTool(state.activeTool, state.inputText)
   } catch (error) {
-    state.error = {
-      stage: 'convert',
-      message: error instanceof Error ? error.message : 'Action failed',
-    }
+    state.error = mapAppError('convert', error)
   }
 }
 
@@ -208,6 +233,16 @@ function extensionForTool(tool: ToolId): string {
   if (tool === 'json-yaml') return 'yaml'
   return 'txt'
 }
+
+function upsertMetaDescription(content: string): void {
+  let tag = document.querySelector('meta[name="description"]')
+  if (!tag) {
+    tag = document.createElement('meta')
+    tag.setAttribute('name', 'description')
+    document.head.appendChild(tag)
+  }
+  tag.setAttribute('content', content)
+}
 </script>
 
 <template>
@@ -222,6 +257,9 @@ function extensionForTool(tool: ToolId): string {
         <button type="button" class="theme-toggle" @click="onToggleTheme">
           Theme: {{ themeLabel }}
         </button>
+        <a class="ghost-btn policy-link" href="/privacy-policy.html" target="_blank" rel="noopener noreferrer">
+          Privacy Policy
+        </a>
       </div>
     </header>
 

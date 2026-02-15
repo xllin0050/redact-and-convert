@@ -30,6 +30,17 @@
     color: var(--btn-ghost-text);
 }
 
+.theme-toggle{
+    padding: 8px 12px;
+}
+
+.policy-link {
+    display: inline-flex;
+    align-items: center;
+    padding: 8px 12px;
+    text-decoration: none;
+}
+
 .primary-btn.sm,
 .ghost-btn.sm {
     padding: 6px 12px;

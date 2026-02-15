@@ -14,6 +14,7 @@ const emit = defineEmits<{
   (event: 'preview'): void
   (event: 'apply'): void
   (event: 'cancel'): void
+  (event: 'close'): void
   (event: 'update:advanced', value: AdvancedState): void
 }>()
 
@@ -81,7 +82,7 @@ function kindLabel(kind: RedactKind): string {
   <section v-if="props.enabled" class="privacy-panel">
     <header class="panel-header">
       <h2>Privacy & Redaction</h2>
-      <button type="button" class="ghost-btn" @click="emit('cancel')" aria-label="Close settings">✕</button>
+      <button type="button" class="ghost-btn" @click="emit('close')" aria-label="Close settings">✕</button>
     </header>
 
     <div class="quick-rules">

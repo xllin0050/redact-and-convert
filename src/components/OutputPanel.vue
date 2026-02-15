@@ -17,7 +17,13 @@ const emit = defineEmits<{
       </div>
     </header>
 
-    <textarea class="text-area" readonly :value="props.outputText" placeholder="Converted result appears here" />
+    <textarea
+      class="text-area"
+      readonly
+      :value="props.outputText"
+      placeholder="Converted result appears here"
+      aria-label="Output content"
+    />
 
     <p class="badge">Processed locally · No uploads · No tracking</p>
   </section>

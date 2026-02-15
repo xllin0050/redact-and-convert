@@ -1,112 +1,104 @@
 .app-shell {
-  --base: #232136;
-  --surface: #2a273f;
-  --overlay: #393552;
-  --muted: #6e6a86;
-  --subtle: #908caa;
-  --text: #e0def4;
-  --love: #eb6f92;
-  --gold: #f6c177;
-  --rose: #ea9a97;
-  --pine: #3e8fb0;
-  --foam: #9ccfd8;
-  --iris: #c4a7e7;
-  --highlight-low: #2a283e;
-  --highlight-med: #44415a;
-  --highlight-high: #56526e;
+  /* --- Shared Constants --- */
+  --radius-lg: 24px;
+  --radius-md: 16px;
+  --radius-sm: 10px;
+  --spacing-xl: 32px;
+  --spacing-lg: 24px;
+  --spacing-md: 16px;
+  --spacing-sm: 8px;
 
-  --bg-gradient-a: color-mix(in srgb, var(--foam) 20%, transparent);
-  --bg-gradient-b: color-mix(in srgb, var(--iris) 18%, transparent);
-  --bg-gradient-c: color-mix(in srgb, var(--gold) 18%, transparent);
+  /* --- Moon (Dark) Theme --- */
+  --bg: #0f1115;
+  --surface: #1a1d23;
+  --surface-soft: #23272e;
+  --line: #2e343d;
+  --line-strong: #3f4752;
+  --text: #f0f2f5;
+  --muted: #8c95a3;
 
-  --panel-bg: color-mix(in srgb, var(--surface) 84%, transparent);
-  --panel-border: color-mix(in srgb, var(--highlight-high) 72%, transparent);
-  --text-main: var(--text);
-  --text-muted: var(--subtle);
+  --accent: #4ade80; /* Clean Emerald */
+  --accent-strong: #22c55e;
+  --accent-warm: #fbbf24; /* Clean Amber */
+  --danger: #f87171;
+  --info: #60a5fa;
 
-  --chip-bg: color-mix(in srgb, var(--overlay) 84%, transparent);
-  --chip-border: color-mix(in srgb, var(--foam) 48%, transparent);
-  --chip-active-bg: linear-gradient(135deg, var(--foam) 0%, var(--iris) 100%);
-  --chip-active-text: var(--base);
+  --panel-bg: var(--surface);
+  --panel-border: var(--line);
 
-  --btn-primary-bg: linear-gradient(135deg, var(--gold) 0%, var(--rose) 100%);
-  --btn-primary-text: var(--base);
-  --btn-primary-border: color-mix(in srgb, var(--gold) 76%, transparent);
+  --chip-bg: var(--surface-soft);
+  --chip-border: var(--line);
+  --chip-active-bg: var(--accent);
+  --chip-active-text: #061a10;
 
-  --btn-ghost-bg: color-mix(in srgb, var(--overlay) 82%, transparent);
-  --btn-ghost-border: color-mix(in srgb, var(--highlight-high) 78%, transparent);
+  --btn-primary-bg: var(--accent-warm);
+  --btn-primary-text: #2d1e05;
+  --btn-primary-border: var(--accent-warm);
+
+  --btn-ghost-bg: transparent;
+  --btn-ghost-border: var(--line);
   --btn-ghost-text: var(--text);
 
-  --input-bg: color-mix(in srgb, var(--base) 92%, transparent);
-  --input-border: color-mix(in srgb, var(--foam) 38%, transparent);
+  --input-bg: #0a0c0f;
+  --input-border: var(--line);
   --input-text: var(--text);
 
-  --status-bg: color-mix(in srgb, var(--overlay) 86%, transparent);
-  --status-border: color-mix(in srgb, var(--foam) 56%, transparent);
-  --status-text: var(--foam);
-  --status-pro-bg: var(--gold);
-  --status-pro-text: var(--base);
+  --status-bg: var(--surface-soft);
+  --status-border: var(--line);
+  --status-text: var(--muted);
 
-  --error: var(--love);
-  --info: var(--pine);
+  --shadow-sm: 0 2px 4px rgba(0,0,0,0.1);
+  --shadow-md: 0 10px 15px -3px rgba(0,0,0,0.2);
 
-  color: var(--text-main);
-  background:
-    radial-gradient(880px 500px at 5% 0%, var(--bg-gradient-a) 0%, transparent 70%),
-    radial-gradient(900px 560px at 100% 100%, var(--bg-gradient-c) 0%, transparent 75%),
-    radial-gradient(760px 420px at 88% 8%, var(--bg-gradient-b) 0%, transparent 68%),
-    linear-gradient(160deg, var(--base) 0%, var(--surface) 48%, var(--highlight-low) 100%);
+  color: var(--text);
+  background-color: var(--bg);
+  background-image: none;
 }
 
 .app-shell[data-theme='dawn'] {
-  --base: #faf4ed;
-  --surface: #fffaf3;
-  --overlay: #f2e9de;
-  --muted: #9893a5;
-  --subtle: #797593;
-  --text: #575279;
-  --love: #b4637a;
-  --gold: #ea9d34;
-  --rose: #d7827e;
-  --pine: #286983;
-  --foam: #56949f;
-  --iris: #907aa9;
-  --highlight-low: #f4ede8;
-  --highlight-med: #dfdad9;
-  --highlight-high: #cecacd;
+  /* --- Dawn (Light) Theme --- */
+  --bg: #f8fafc;
+  --surface: #ffffff;
+  --surface-soft: #f1f5f9;
+  --line: #e2e8f0;
+  --line-strong: #cbd5e1;
+  --text: #0f172a;
+  --muted: #64748b;
 
-  --bg-gradient-a: color-mix(in srgb, var(--foam) 16%, transparent);
-  --bg-gradient-b: color-mix(in srgb, var(--iris) 14%, transparent);
-  --bg-gradient-c: color-mix(in srgb, var(--gold) 14%, transparent);
+  --accent: #10b981;
+  --accent-strong: #059669;
+  --accent-warm: #f59e0b;
+  --danger: #ef4444;
+  --info: #3b82f6;
 
-  --panel-bg: color-mix(in srgb, #ffffff 92%, var(--surface));
-  --panel-border: color-mix(in srgb, var(--highlight-high) 74%, transparent);
-  --text-main: var(--text);
-  --text-muted: var(--subtle);
+  --panel-bg: var(--surface);
+  --panel-border: var(--line);
 
-  --chip-bg: color-mix(in srgb, #ffffff 86%, var(--overlay));
-  --chip-border: color-mix(in srgb, var(--foam) 34%, transparent);
-  --chip-active-bg: linear-gradient(135deg, var(--foam) 0%, var(--iris) 100%);
+  --chip-bg: var(--surface-soft);
+  --chip-border: var(--line);
+  --chip-active-bg: var(--accent);
   --chip-active-text: #ffffff;
 
-  --btn-primary-bg: linear-gradient(135deg, var(--gold) 0%, var(--rose) 100%);
-  --btn-primary-text: #fff9f3;
-  --btn-primary-border: color-mix(in srgb, var(--rose) 70%, transparent);
+  --btn-primary-bg: var(--accent-warm);
+  --btn-primary-text: #ffffff;
+  --btn-primary-border: var(--accent-warm);
 
-  --btn-ghost-bg: color-mix(in srgb, #ffffff 84%, var(--overlay));
-  --btn-ghost-border: color-mix(in srgb, var(--highlight-high) 78%, transparent);
+  --btn-ghost-bg: transparent;
+  --btn-ghost-border: var(--line);
   --btn-ghost-text: var(--text);
 
-  --input-bg: color-mix(in srgb, #ffffff 88%, var(--surface));
-  --input-border: color-mix(in srgb, var(--foam) 34%, transparent);
+  --input-bg: #ffffff;
+  --input-border: var(--line-strong);
   --input-text: var(--text);
 
-  --status-bg: color-mix(in srgb, #ffffff 80%, var(--overlay));
-  --status-border: color-mix(in srgb, var(--foam) 52%, transparent);
-  --status-text: var(--pine);
-  --status-pro-bg: var(--gold);
-  --status-pro-text: #fff9f3;
+  --status-bg: var(--surface-soft);
+  --status-border: var(--line);
+  --status-text: var(--muted);
 
-  --error: var(--love);
-  --info: var(--pine);
+  --shadow-sm: 0 1px 3px rgba(0,0,0,0.05);
+  --shadow-md: 0 4px 6px -1px rgba(0,0,0,0.1);
+
+  background-color: var(--bg);
+  background-image: none;
 }
+

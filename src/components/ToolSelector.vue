@@ -18,13 +18,14 @@ function onSelect(tool: ToolId): void {
 </script>
 
 <template>
-  <div class="tool-selector">
+  <div class="tool-selector" role="toolbar" aria-label="conversion tools">
     <button
       v-for="tool in tools"
       :key="tool.id"
       type="button"
       class="tool-chip"
       :class="{ active: props.modelValue === tool.id }"
+      :aria-pressed="props.modelValue === tool.id"
       @click="onSelect(tool.id)"
     >
       {{ tool.label }}

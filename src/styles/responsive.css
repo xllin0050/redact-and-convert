@@ -1,22 +1,58 @@
-@media (max-width: 980px) {
+@media (max-width: 1024px) {
   .workspace {
     grid-template-columns: 1fr;
+    gap: var(--spacing-lg);
   }
+}
 
-  #app {
-    padding: 0.85rem;
-  }
-
-  .text-area {
-    min-height: 220px;
+@media (max-width: 768px) {
+  .app-shell {
+    padding: var(--spacing-md);
+    gap: var(--spacing-md);
   }
 
   .top-bar {
-    align-items: stretch;
     flex-direction: column;
+    align-items: stretch;
   }
 
-  .top-actions {
-    justify-content: space-between;
+  .trust-strip {
+    grid-template-columns: 1fr;
+    gap: var(--spacing-sm);
+  }
+
+  .action-row {
+    flex-direction: column;
+    align-items: stretch;
+    text-align: center;
+  }
+
+  .tool-selector {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .tool-chip {
+    text-align: center;
+    justify-content: center;
   }
 }
+
+@media (max-width: 480px) {
+  .app-shell {
+    padding: var(--spacing-sm);
+  }
+
+  .top-bar {
+    padding: var(--spacing-md);
+  }
+
+  .panel {
+    padding: var(--spacing-md);
+  }
+
+  .tool-selector {
+    grid-template-columns: 1fr;
+  }
+}
+

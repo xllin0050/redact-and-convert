@@ -34,8 +34,6 @@ const state = reactive({
   preview: {
     status: 'idle',
   } as PreviewState,
-
-  proStatus: 'free' as 'free' | 'pro',
   advanced: {
     jsonKeys: [],
     customRegexRules: [],
@@ -43,9 +41,15 @@ const state = reactive({
   } as AdvancedState,
 })
 
-const isPro = computed(() => state.proStatus === 'pro')
 const primaryLabel = computed(() => (state.activeTool === 'format' ? 'Format' : 'Convert'))
 const themeLabel = computed(() => (state.theme === 'moon' ? 'Moon' : 'Dawn'))
+const activeToolLabel = computed(() => {
+  if (state.activeTool === 'json-csv') return 'JSON -> CSV'
+  if (state.activeTool === 'csv-json') return 'CSV -> JSON'
+  if (state.activeTool === 'yaml-json') return 'YAML -> JSON'
+  if (state.activeTool === 'json-yaml') return 'JSON -> YAML'
+  return 'Formatter'
+})
 
 function onToolChange(tool: ToolId): void {
   state.activeTool = tool
@@ -140,11 +144,6 @@ function onCancelPreview(): void {
   state.preview = { status: 'idle' }
 }
 
-function onUnlockPro(): void {
-  state.proStatus = 'pro'
-  state.infoMessage = 'Pro unlocked in this browser session.'
-}
-
 function onRunPrimaryAction(): void {
   state.error = undefined
   state.infoMessage = ''
@@ -192,7 +191,7 @@ function buildRedactionConfig(): RedactionConfig {
   return {
     quickRules: state.quickRules,
     advanced: state.advanced,
-    includeAdvanced: isPro.value,
+    includeAdvanced: true,
   }
 }
 
@@ -207,17 +206,24 @@ function extensionForTool(tool: ToolId): string {
 <template>
   <div class="app-shell" :data-theme="state.theme">
     <header class="top-bar">
-      <div>
+      <div class="brand-block">
+        <p class="eyebrow">Offline Utility Suite</p>
         <h1>Redact and Convert</h1>
-        <p>Offline JSON / CSV / YAML tools with optional privacy redaction.</p>
+        <p>Transform and sanitize JSON / CSV / YAML directly in your browser.</p>
       </div>
       <div class="top-actions">
         <button type="button" class="theme-toggle" @click="onToggleTheme">
           Theme: {{ themeLabel }}
         </button>
-        <span class="status" :class="{ pro: isPro }">{{ isPro ? 'Pro' : 'Free' }}</span>
+        <span class="status">All features enabled</span>
       </div>
     </header>
+
+    <section class="trust-strip" aria-label="workspace summary">
+      <p class="trust-item"><strong>Mode:</strong> Full access</p>
+      <p class="trust-item"><strong>Tool:</strong> {{ activeToolLabel }}</p>
+      <p class="trust-item"><strong>Privacy:</strong> Browser only, no uploads</p>
+    </section>
 
     <ToolSelector :model-value="state.activeTool" @update:model-value="onToolChange" />
 
@@ -237,12 +243,10 @@ function extensionForTool(tool: ToolId): string {
           :quick-rules="state.quickRules"
           :preview="state.preview"
           :advanced="state.advanced"
-          :is-pro="isPro"
           @update:quick-rules="onQuickRulesChange"
           @preview="onPreviewRedaction"
           @apply="onApplyRedaction"
           @cancel="onCancelPreview"
-          @unlock="onUnlockPro"
           @update:advanced="onAdvancedChange"
         />
       </div>
@@ -252,10 +256,10 @@ function extensionForTool(tool: ToolId): string {
 
     <section class="action-row">
       <button type="button" class="primary-btn" @click="onRunPrimaryAction">{{ primaryLabel }}</button>
-      <p>Runs locally. No uploads.</p>
+      <p>Local execution only. Your data never leaves this device.</p>
     </section>
 
-    <p v-if="state.error" class="error-text">{{ state.error.message }}</p>
-    <p v-else-if="state.infoMessage" class="info-text">{{ state.infoMessage }}</p>
+    <p v-if="state.error" class="error-text" role="alert">{{ state.error.message }}</p>
+    <p v-else-if="state.infoMessage" class="info-text" aria-live="polite">{{ state.infoMessage }}</p>
   </div>
 </template>

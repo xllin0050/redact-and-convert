@@ -73,7 +73,7 @@ describe('App integration', () => {
     expect(wrapper.get('.info-text').text()).toBe('Redaction applied to input text.')
   })
 
-  it('includes advanced rules in preview after unlocking pro', async () => {
+  it('includes advanced rules in preview by default', async () => {
     detectSensitiveMock.mockReturnValue({
       summary: { emails: 0, phones: 0, ips: 0, tokens: 0, customs: 0 },
       sample: [],
@@ -82,7 +82,6 @@ describe('App integration', () => {
 
     await wrapper.get('textarea[placeholder="Paste JSON / CSV / YAML here"]').setValue('{"password":"x"}')
     await wrapper.get('label.privacy-toggle input[type="checkbox"]').setValue(true)
-    await wrapper.get('.privacy-panel .unlock-btn').trigger('click')
 
     const jsonKeyInput = wrapper.get('.advanced-body input[placeholder="token,password,email"]')
     await jsonKeyInput.setValue('password')
@@ -93,7 +92,7 @@ describe('App integration', () => {
       includeAdvanced: true,
       advanced: { jsonKeys: ['password'] },
     })
-    expect(wrapper.find('.status.pro').exists()).toBe(true)
+    expect(wrapper.get('.status').text()).toContain('All features enabled')
   })
 
   it('toggles theme between moon and dawn', async () => {

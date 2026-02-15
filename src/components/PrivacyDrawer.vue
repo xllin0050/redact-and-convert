@@ -6,7 +6,6 @@ const props = defineProps<{
   enabled: boolean
   quickRules: QuickRules
   preview: PreviewState
-  isPro: boolean
   advanced: AdvancedState
 }>()
 
@@ -15,7 +14,6 @@ const emit = defineEmits<{
   (event: 'preview'): void
   (event: 'apply'): void
   (event: 'cancel'): void
-  (event: 'unlock'): void
   (event: 'update:advanced', value: AdvancedState): void
 }>()
 
@@ -110,22 +108,20 @@ function kindLabel(kind: RedactKind): string {
         <button type="button" class="primary-btn" @click="emit('apply')">Apply redaction</button>
         <button type="button" class="ghost-btn" @click="emit('cancel')">Cancel</button>
       </div>
-      <p class="pro-hint">Need more control (specific keys, custom regex, batch)? Unlock Pro.</p>
     </div>
 
     <div class="preview-box" v-if="props.preview.status === 'error'">
       <p class="error-text">{{ props.preview.errorMessage }}</p>
     </div>
 
-    <details class="advanced" :open="!props.isPro">
-      <summary>Advanced rules (Pro)</summary>
+    <details class="advanced" open>
+      <summary>Advanced rules</summary>
       <div class="advanced-body">
         <label>
           Redact by JSON keys
           <input
             type="text"
             :value="jsonKeysText"
-            :disabled="!props.isPro"
             placeholder="token,password,email"
             @input="onJsonKeysInput"
           />
@@ -136,21 +132,17 @@ function kindLabel(kind: RedactKind): string {
           <input
             type="text"
             :value="regexText"
-            :disabled="!props.isPro"
             placeholder="bearer\\s+[a-z0-9-_.]+"
             @input="onRegexInput"
           />
         </label>
 
-        <fieldset :disabled="!props.isPro">
+        <fieldset>
           <legend>Mask style</legend>
           <label><input type="radio" name="mask-style" value="REDACTED" :checked="props.advanced.maskStyle === 'REDACTED'" @change="updateMaskStyle('REDACTED')" /> [REDACTED]</label>
           <label><input type="radio" name="mask-style" value="ASTERISKS" :checked="props.advanced.maskStyle === 'ASTERISKS'" @change="updateMaskStyle('ASTERISKS')" /> ***</label>
           <label><input type="radio" name="mask-style" value="HASH" :checked="props.advanced.maskStyle === 'HASH'" @change="updateMaskStyle('HASH')" /> hash</label>
         </fieldset>
-
-        <p class="hint">One-time unlock. Works offline. No account.</p>
-        <button v-if="!props.isPro" type="button" class="unlock-btn" @click="emit('unlock')">Unlock Pro ($4)</button>
       </div>
     </details>
   </section>

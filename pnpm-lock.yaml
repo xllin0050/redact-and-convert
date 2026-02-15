@@ -8,9 +8,6 @@ importers:
 
   .:
     dependencies:
-      '@monokai/monoco':
-        specifier: ^0.3.2
-        version: 0.3.2
       papaparse:
         specifier: ^5.5.3
         version: 5.5.3
@@ -285,9 +282,6 @@ packages:
 
   '@jridgewell/sourcemap-codec@1.5.5':
     resolution: {integrity: sha512-cYQ9310grqxueWbl+WuIUIaiUaDcj7WOq5fVhEljNVgRfOUhY9fy2zTvfoqWsnebh8Sl70VScFbICvJnLKB0Og==}
-
-  '@monokai/monoco@0.3.2':
-    resolution: {integrity: sha512-a2zhPkwrH8RcKBxbwx+3XJkkAvaOAOu4VZFzDMzpMGZV3i9XfHHRdaGL6sOhsOIsJl/zufzcCA+2JwPK2fPSNA==}
 
   '@one-ini/wasm@0.1.1':
     resolution: {integrity: sha512-XuySG1E38YScSJoMlqovLru4KTUNSjgVTIjyh7qMX6aNN5HY5Ct5LhRJdxO79JtTzKfzV/bnWpz+zquYrISsvw==}
@@ -1220,8 +1214,6 @@ snapshots:
       wrap-ansi-cjs: wrap-ansi@7.0.0
 
   '@jridgewell/sourcemap-codec@1.5.5': {}
-
-  '@monokai/monoco@0.3.2': {}
 
   '@one-ini/wasm@0.1.1': {}
 

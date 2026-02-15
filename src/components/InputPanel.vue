@@ -57,6 +57,7 @@ function onUpload(event: Event): void {
     <textarea
       class="text-area"
       placeholder="Paste JSON / CSV / YAML here"
+      aria-label="Input content"
       :value="props.modelValue"
       @input="onTextInput"
     />

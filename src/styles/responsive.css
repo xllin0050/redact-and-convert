@@ -16,11 +16,6 @@
     align-items: stretch;
   }
 
-  .trust-strip {
-    grid-template-columns: 1fr;
-    gap: var(--spacing-sm);
-  }
-
   .action-row {
     flex-direction: column;
     align-items: stretch;
@@ -55,4 +50,3 @@
     grid-template-columns: 1fr;
   }
 }
-

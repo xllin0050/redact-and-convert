@@ -42,13 +42,6 @@ const state = reactive({
 })
 
 const themeLabel = computed(() => (state.theme === 'moon' ? 'Moon' : 'Dawn'))
-const activeToolLabel = computed(() => {
-  if (state.activeTool === 'json-csv') return 'JSON -> CSV'
-  if (state.activeTool === 'csv-json') return 'CSV -> JSON'
-  if (state.activeTool === 'yaml-json') return 'YAML -> JSON'
-  if (state.activeTool === 'json-yaml') return 'JSON -> YAML'
-  return 'Custom'
-})
 
 function onToolChange(tool: ToolId): void {
   state.activeTool = tool
@@ -229,15 +222,8 @@ function extensionForTool(tool: ToolId): string {
         <button type="button" class="theme-toggle" @click="onToggleTheme">
           Theme: {{ themeLabel }}
         </button>
-        <span class="status">All features enabled</span>
       </div>
     </header>
-
-    <section class="trust-strip" aria-label="workspace summary">
-      <p class="trust-item"><strong>Mode:</strong> Full access</p>
-      <p class="trust-item"><strong>Tool:</strong> {{ activeToolLabel }}</p>
-      <p class="trust-item"><strong>Privacy:</strong> Browser only, no uploads</p>
-    </section>
 
     <ToolSelector :model-value="state.activeTool" @update:model-value="onToolChange" />
 

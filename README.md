@@ -86,3 +86,7 @@ pnpm test:run
 ```
 
 The project includes unit tests for conversion/redaction logic and integration tests for main app flows.
+
+## License
+
+MIT. See [LICENSE](./LICENSE).

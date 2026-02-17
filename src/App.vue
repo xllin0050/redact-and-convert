@@ -306,5 +306,8 @@ function upsertMetaDescription(content: string): void {
     <p v-if="state.error" class="error-text" role="alert">{{ state.error.message }}</p>
     <p v-else-if="state.infoMessage" class="info-text" aria-live="polite">{{ state.infoMessage }}</p>
 
+    <footer>
+      <span>© {{ new Date().getFullYear() }} Redact and Convert. MIT License.</span>
+    </footer>
   </div>
 </template>
